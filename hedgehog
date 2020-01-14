@@ -1,8 +1,4 @@
 #cloud-config
-#password: ubuntu
-#chpasswd: { expire: False }
-ssh_pwauth: False #True
-
 timezone: Asia/Tokyo
 locale: ja_JP.utf8
 
