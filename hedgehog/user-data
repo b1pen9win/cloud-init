@@ -11,7 +11,7 @@ write_files:
                 ens192:
                     dhcp4: false
                     dhcp6: false
-                    addresses: [10.31.80.250/24]
+                    addresses: [10.31.80.254/24]
                     gateway4: 10.31.80.1
                     nameservers:
                         addresses: [10.10.10.10]
