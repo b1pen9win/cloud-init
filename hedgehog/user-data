@@ -23,6 +23,9 @@ write_files:
 runcmd:
   #- ssh-import-id gh:XXXXX
   - netplan apply
+  - sed -i 's|#PermitRootLogin prohibit-password|PermitRootLogin no|g' /etc/ssh/sshd_config
+  - sed -i 's|UsePAM yes|UsePAM no|g' /etc/ssh/sshd_config
+  - service sshd restart
   - snap install lxd
   - lxd.migrate -yes
 
