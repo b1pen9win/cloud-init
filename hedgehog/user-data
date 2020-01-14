@@ -21,6 +21,7 @@ write_files:
       permissions: '0644'
 
 runcmd:
+  - ssh-import-id gh:b1pen9win
   - netplan apply
   - snap install lxd
   - lxd.migrate -yes
