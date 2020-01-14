@@ -25,15 +25,15 @@ runcmd:
   - netplan apply
   - sed -i 's|#PermitRootLogin prohibit-password|PermitRootLogin no|g' /etc/ssh/sshd_config
   - sed -i 's|UsePAM yes|UsePAM no|g' /etc/ssh/sshd_config
-  - service sshd restart
+  #- service sshd restart
   - snap install lxd
   - lxd.migrate -yes
 
 #runcmd:
 #  - ip addr flush dev ens192
 
-#power_state:
-#  delay: "+1"
-#  mode: reboot
-#  message: REBOOT
-#  timeout: 30
+power_state:
+  delay: "+1"
+  mode: reboot
+  message: REBOOT
+  timeout: 30
