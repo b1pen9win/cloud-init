@@ -1,0 +1,43 @@
+#cloud-config
+timezone: Asia/Tokyo
+locale: ja_JP.utf8
+
+write_files:
+    - content: |
+        # My new /etc/netplan/99-cloud-init.yaml
+        network:
+            version: 2
+            ethernets:
+                ens192:
+                    dhcp4: false
+                    dhcp6: false
+                    addresses: [10.12.110.253/24]
+                    #gateway4: 10.12.110.1
+                    #nameservers:
+                    #    addresses: [10.10.10.10]
+                    #    search: []
+                    optional: true
+                ens224:
+                    dhcp4: false
+                    dhcp6: false
+                    addresses: [10.12.111.253/24]
+                    gateway4: 10.12.111.1
+                    nameservers:
+                        addresses: [10.10.10.10]
+                        search: []
+                    optional: true
+      path: /etc/netplan/99-cloud-init.yaml
+      permissions: '0644'
+
+runcmd:
+  - netplan apply
+  - sed -i 's|#PermitRootLogin prohibit-password|PermitRootLogin no|g' /etc/ssh/sshd_config
+  - sed -i 's|UsePAM yes|UsePAM no|g' /etc/ssh/sshd_config
+  - snap install lxd
+  - lxd.migrate -yes
+
+power_state:
+  delay: "+1"
+  mode: reboot
+  message: REBOOT
+  timeout: 30
