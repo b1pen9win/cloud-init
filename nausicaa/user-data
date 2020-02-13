@@ -8,7 +8,7 @@ write_files:
         network:
             version: 2
             ethernets:
-                ens192:
+                ens224:
                     dhcp4: false
                     dhcp6: false
                     addresses: [10.12.110.253/24]
@@ -17,7 +17,7 @@ write_files:
                     #    addresses: [10.10.10.10]
                     #    search: []
                     optional: true
-                ens224:
+                ens192:
                     dhcp4: false
                     dhcp6: false
                     addresses: [10.12.111.253/24]
