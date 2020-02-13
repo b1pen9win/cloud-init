@@ -8,15 +8,6 @@ write_files:
         network:
             version: 2
             ethernets:
-                ens224:
-                    dhcp4: false
-                    dhcp6: false
-                    addresses: [10.12.110.253/24]
-                    #gateway4: 10.12.110.1
-                    #nameservers:
-                    #    addresses: [10.10.10.10]
-                    #    search: []
-                    optional: true
                 ens192:
                     dhcp4: false
                     dhcp6: false
@@ -25,6 +16,15 @@ write_files:
                     nameservers:
                         addresses: [10.10.10.10]
                         search: []
+                    optional: true
+                ens224:
+                    dhcp4: false
+                    dhcp6: false
+                    addresses: [10.12.110.253/24]
+                    #gateway4: 10.12.110.1
+                    #nameservers:
+                    #    addresses: [10.10.10.10]
+                    #    search: []
                     optional: true
       path: /etc/netplan/99-cloud-init.yaml
       permissions: '0644'
