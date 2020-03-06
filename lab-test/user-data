@@ -1,0 +1,23 @@
+#cloud-config
+timezone: Asia/Tokyo
+locale: ja_JP.utf8
+hostname: lab-test
+
+write_files:
+    - content: |
+        # My new /etc/netplan/99-cloud-init.yaml
+        network:
+            version: 2
+            ethernets:
+                ens192:
+                    dhcp4: true
+                    dhcp6: false
+                    optional: true
+      path: /etc/netplan/99-cloud-init.yaml
+      permissions: '0644'
+
+runcmd:
+  - netplan apply
+  - sed -i 's|#PermitRootLogin prohibit-password|PermitRootLogin no|g' /etc/ssh/sshd_config
+  - sed -i 's|UsePAM yes|UsePAM no|g' /etc/ssh/sshd_config
+
